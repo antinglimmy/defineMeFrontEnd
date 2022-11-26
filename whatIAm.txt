@@ -1,0 +1,18 @@
+Features
+When highlight a word and right click, to pop up the definition of the word and synonyms
+Save the word for reading later
+To function as a chrome extension
+
+Dream
+Integrate with iPhone notes
+Foreign languages (esp Chinese yu can do it ni hao!!)
+User profiles
+CSS
+Pronounciation
+Quiz for saved words - sounds
+
+
+Other stuff i learnt
+routing
+backend 
+db
