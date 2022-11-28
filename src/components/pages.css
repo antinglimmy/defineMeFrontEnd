@@ -1,6 +1,19 @@
 .definitionPopUp {
-  position: relative;
+  position: absolute;
   background-color: pink;
   opacity: 0.85;
-  width: 500px;
+  font-size: small;
+  color: grey;
+  display: block;
+}
+
+.DefineMe {
+  background-color: white;
+  position: absolute;
+}
+
+.NotDefineMe {
+  background-color: white;
+  position: absolute;
+  display: none;
 }
