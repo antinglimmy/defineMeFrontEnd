@@ -6,33 +6,74 @@ let definitions;
 let definitionArray = [];
 
 const GetDefinition = ({ isClicked, selectedWord, selectedDiv }) => {
+  // let metaDefinition = [];
   const [metaDefinition, setMetaDefinition] = useState([]);
   const [selected, setSelected] = useState(false);
   const [showButton, setShowButton] = useState(true);
 
-  const dictionaryRequest = () => {
-    axios
+  // async function dictionaryRequest() {
+
+  function dictionaryRequest() {
+    return axios
       .get(
         `${process.env.REACT_APP_DICTIONARY_URL}/${selectedWord}?key=${process.env.REACT_APP_DICTIONARY_API_KEY}`
       )
       .then((res) => {
+        // metaDefinition = res.data;
         setMetaDefinition(res.data);
+        console.log(res.data);
+        // showDefinition();
+        console.log("&&&");
         // console.log("MetaData", res.data);
       })
       .catch((err) => console.log(err));
-  };
+  }
 
-  const showDefinition = () => {
+  // function dictionaryRequest () {
+  //   return new Promise(function (resolve, reject) {
+  //     resolve(
+  //     axios
+  //     .get(
+  //       `${process.env.REACT_APP_DICTIONARY_URL}/${selectedWord}?key=${process.env.REACT_APP_DICTIONARY_API_KEY}`
+  //     )
+  //     .then((res) => {
+  //       setMetaDefinition(res.data);
+  //       // console.log("MetaData", res.data);
+  //     })
+  //     .catch((err) => console.log(err));
+  //     )
+
+  //   });
+  // }
+
+  // dictionaryRequest().then(function (showDefinition) {
+  //   const metaDefinitionSliced = metaDefinition.slice(0, 2);
+  //   // console.log(metaDefinitionSliced);
+
+  //   for (let i = 0; i < metaDefinitionSliced.length; i++) {
+  //     const currentDefinition = metaDefinitionSliced[i].shortdef[0];
+  //     definitionArray.push(currentDefinition);
+  //   }
+
+  //   console.log(definitionArray);
+  // });
+  async function dictionaryRequest2() {
+    const dictionaryRequestOutput = await dictionaryRequest();
+    return dictionaryRequestOutput;
+  }
+  async function showDefinition() {
+    const dictionaryRequestOutput2 = await dictionaryRequest2();
     const metaDefinitionSliced = metaDefinition.slice(0, 2);
-    // console.log(metaDefinitionSliced);
-
     for (let i = 0; i < metaDefinitionSliced.length; i++) {
       const currentDefinition = metaDefinitionSliced[i].shortdef[0];
       definitionArray.push(currentDefinition);
     }
 
     console.log(definitionArray);
-  };
+    setSelected(true);
+
+    // setShowButton(false);
+  }
 
   // const displayDefinitions = () => {
   //   definitionArray.map((entry) => {
@@ -44,22 +85,19 @@ const GetDefinition = ({ isClicked, selectedWord, selectedDiv }) => {
   // };
 
   const getDefinition = () => {
-    setSelected(true);
-    dictionaryRequest();
+    // dictionaryRequest();
+    // dictionaryRequest2();
     showDefinition();
-    // displayDefinitions();
 
     console.log(selected, "selected Line 51");
   };
-
-  // console.log(isClicked, showButton, selected);
 
   return (
     <>
       {isClicked && (
         <button
           onClick={getDefinition}
-          // className={showButton ? "DefineMe" : "NotDefineMe"}
+          className={showButton ? "DefineMe" : "NotDefineMe"}
           style={{
             left: selectedDiv.left - 0,
             top: selectedDiv.top - 40,
@@ -83,8 +121,7 @@ const GetDefinition = ({ isClicked, selectedWord, selectedDiv }) => {
           {definitionArray.map((entry) => {
             return <div>{entry} </div>;
           })}
-          {console.log(selected, "selected Line 79")}
-          {console.log("Line 80 happens")}
+          {console.log(selected, definitionArray, "selected Line 79")}
         </div>
       )}
     </>

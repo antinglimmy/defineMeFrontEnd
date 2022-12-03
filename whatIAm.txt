@@ -16,3 +16,9 @@ Other stuff i learnt
 routing
 backend 
 db
+
+Issues
+Need to click Define Me twice
+Define me doesn't disappear when definition comes up
+Different env file for both frontend and backend
+config database doesn't run when using env file
