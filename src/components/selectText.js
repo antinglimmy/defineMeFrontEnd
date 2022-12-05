@@ -9,16 +9,11 @@ const GetSelectionHandler = () => {
   const [selectedWord, setSelectedWord] = useState();
 
   const handleMouseUp = () => {
-    console.log(`Selected text: ${document.getSelection().toString()}`);
+    // console.log(`Selected text: ${document.getSelection().toString()}`);
     setSelectedWord(document.getSelection().toString());
     let selectedWord2 = document.getSelection();
     setIsClicked(true);
     selectedDiv = selectedWord2.getRangeAt(0).getBoundingClientRect();
-    console.log(selectedDiv);
-
-    // popUpDiv.style.top = `calc(${selectedDiv.top}px - 48px)`;
-    // popUpDiv.style.left = `calc(${selectedDiv.left}px + calc(${selectedDiv.width}px / 2) - 40px)`;
-    // popUpDiv["text"] = text;
 
     const getBoundingClientRect = () => {
       return {
@@ -39,7 +34,13 @@ const GetSelectionHandler = () => {
 
   return (
     <>
-      <div onMouseUp={handleMouseUp}>Text to test stuff</div>
+      <div onMouseUp={handleMouseUp}>
+        Electric vehicle battery production is an increasingly big business,
+        with China and the United States leading the industry. Still, to not get
+        left behind, Europe has been investing in production, and now there’s an
+        unlikely hot spot for battery production, according to a report
+        published Monday by Financial Times.
+      </div>
       <GetDefinition
         isClicked={isClicked}
         selectedWord={selectedWord}

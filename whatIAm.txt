@@ -18,7 +18,13 @@ backend
 db
 
 Issues
+[sort of done] Define me doesn't disappear when definition comes up
+Different env file for both frontend and backend --> same works
+[done] config database doesn't run when using env file 
+how to not include map inside
+  solve the defineme twice first
+  console log object to see what’s wrong
+
+
 Need to click Define Me twice
-Define me doesn't disappear when definition comes up
-Different env file for both frontend and backend
-config database doesn't run when using env file
+How to select text from any webpage and not what is in my own code
