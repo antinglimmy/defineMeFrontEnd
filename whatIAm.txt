@@ -28,3 +28,9 @@ how to not include map inside
 
 Need to click Define Me twice
 How to select text from any webpage and not what is in my own code
+
+
+still need to click defineMe twice
+make into extension
+backend
+.env file

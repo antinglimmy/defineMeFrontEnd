@@ -4,7 +4,7 @@ import "./pages.css";
 
 let definitions;
 let definitionArray = [];
-let metaDefinitionSliced = [];
+// let metaDefinitionSliced = [];
 
 const GetDefinition = ({ isClicked, selectedWord, selectedDiv }) => {
   // let metaDefinition = [];
@@ -110,16 +110,17 @@ const GetDefinition = ({ isClicked, selectedWord, selectedDiv }) => {
             top: selectedDiv.top - 60,
           }}
         >
+          {/* xx */}
           {definitionArray.map((entry) => {
             return <div>{entry} </div>;
           })}
+          test
           {console.log(
             selected,
             selectedDiv,
             definitionArray,
             "return function"
           )}
-          <button onClick={saveWord}>Save Word</button>
         </div>
       )}
     </>
