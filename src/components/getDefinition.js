@@ -19,16 +19,16 @@ const GetDefinition = ({ isClicked, selectedWord, selectedDiv }) => {
         `${process.env.REACT_APP_DICTIONARY_URL}/${selectedWord}?key=${process.env.REACT_APP_DICTIONARY_API_KEY}`
       )
       .then((res) => {
-        metaDefinitionSliced = res.data.slice(0, 2);
-        // metaDefinition = res.data;
+        setMetaDefinition(res.data);
+        // metaDefinition = res.data.slice(0, 2);
         // setMetaDefinition(res.data);
-        console.log(metaDefinitionSliced);
+        console.log(metaDefinition);
         // showDefinition();
-        console.log("&&& Line 25 dictionaryRequest");
+        console.log("dictionaryRequest");
       })
-      .then((res) => {
-        showDefinition();
-      })
+      // .then((res) => {
+      //   showDefinition();
+      // })
 
       .catch((err) => console.log(err));
     //callback of setstate, useeffect, trigger something when state is set, then trigger the second .then, useEffect show definition
@@ -40,19 +40,30 @@ const GetDefinition = ({ isClicked, selectedWord, selectedDiv }) => {
   //   return dictionaryRequestOutput;
   // }
 
-  function showDefinition() {
-    // const dictionaryRequestOutput2 = await dictionaryRequest2();
-    // const metaDefinitionSliced = metaDefinition.slice(0, 2);
+  useEffect(() => {
+    const metaDefinitionSliced = metaDefinition.slice(0, 2);
     for (let i = 0; i < metaDefinitionSliced.length; i++) {
       const currentDefinition = metaDefinitionSliced[i].shortdef[0];
       definitionArray.push(currentDefinition);
     }
 
-    console.log(definitionArray, "Line 49 showDefinition");
+    console.log(definitionArray, "useEffect/showDefinition");
     setSelected(true);
+  }, [metaDefinition]);
 
-    // setShowButton(false);
-  }
+  // function showDefinition() {
+  //   // const dictionaryRequestOutput2 = await dictionaryRequest2();
+  //   // const metaDefinitionSliced = metaDefinition.slice(0, 2);
+  //   for (let i = 0; i < metaDefinition.length; i++) {
+  //     const currentDefinition = metaDefinition[i].shortdef[0];
+  //     definitionArray.push(currentDefinition);
+  //   }
+
+  //   console.log(definitionArray, "Line 49 showDefinition");
+  //   setSelected(true);
+
+  //   // setShowButton(false);
+  // }
   // const showDefinition3 = useCallback(async () => {
   //   // send the actual request
   //   const metaDefinition2 = await dictionaryRequest();
@@ -68,7 +79,7 @@ const GetDefinition = ({ isClicked, selectedWord, selectedDiv }) => {
     // showDefinition();
     // showDefinition3();
 
-    console.log(selected, "selected Line 69, getDefinition");
+    console.log(selected, "getDefinition");
   };
 
   const saveWord = () => {
@@ -78,7 +89,7 @@ const GetDefinition = ({ isClicked, selectedWord, selectedDiv }) => {
 
   return (
     <>
-      {isClicked && (
+      {isClicked && selectedDiv && (
         <button
           onClick={getDefinition}
           className={showButton ? "DefineMe" : "NotDefineMe"}
@@ -91,7 +102,7 @@ const GetDefinition = ({ isClicked, selectedWord, selectedDiv }) => {
         </button>
       )}
 
-      {selected && (
+      {selected && selectedDiv && (
         <div
           className="definitionPopUp"
           style={{
@@ -102,7 +113,12 @@ const GetDefinition = ({ isClicked, selectedWord, selectedDiv }) => {
           {definitionArray.map((entry) => {
             return <div>{entry} </div>;
           })}
-          {console.log(selected, definitionArray, "Line 103, return function")}
+          {console.log(
+            selected,
+            selectedDiv,
+            definitionArray,
+            "return function"
+          )}
           <button onClick={saveWord}>Save Word</button>
         </div>
       )}
